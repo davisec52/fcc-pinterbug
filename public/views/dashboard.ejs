@@ -1,0 +1,115 @@
+<%include ./partials/header %>
+<div class="container">
+<%include ./partials/imageCategories %>
+
+	<div id="dash-container-all">
+
+		<% if(!images || images === undefined || save === true  || save === undefined) {%>
+			<div id="modal-wrapper"></div>
+		<%} else {%>
+
+
+		<div id="modal-wrapper">
+			<div class="modal-panel" id="modal-content" style="">
+				<div class="img-selection">
+					<img class="" id="selection" src=<%=images.url %> />
+				</div>
+				<div class="specs">
+						<form id="img-form" style="display: none" action="/img-selection/<%=user._id %>/postedby=<%=images.postedBy %>&index=<%=index %>&save=true" method="POST">
+							<div class="select-container">
+								<label class="img-input" style="margin-bottom: 5px" for="select">Choose a Board</label>
+								<select name="selection" id="board-choice">
+									<option class="itemopt" selected value="base">Please Choose</option>
+									<% user.boards.forEach((board) => {%>
+										<option class="itemopt" value="<%=board.board_name %>"><%=board.board_name %></option>
+									<%})%>
+								</select>
+							</div>
+							<hr></hr>
+							<div class="form-input">
+								<label class="img-input" for="boardname">Create a New Board Name</label>
+								<input type="text" id="name-input" name="boardname"></input>
+							</div>
+							<div class="form-input">
+								<label class="img-input" for="imgtitle">Your Title</label>
+								<input type="text"  name="imgtitle" placeholder="Image title" ></input>
+							</div> 
+							<div class="form-input">
+								<label class="img-input"  for="imgdesc">Your Description</label>
+								<input type="text" name="imgdesc" placeholder="Description"></input>
+							</div>
+							<div class="modal-ctrl-box">
+								<button type="submit" class="modal-ctrl save-board">save</button>
+							</div>
+						</form>
+
+						<div class="img-info">
+							<div class="item-info">Posted By: <%=images.postedBy %></div>
+							<% if(images.title !== null) {%>
+								<div class="item-info" id="postedBy">Imgur title: <%=images.title %>  </div>
+							<%}%>
+							<div class="item-info wordbreak">Imgur description: <%=images.description %> </div>
+							<div class="item-info">Imgur gallery link: <%=images.galleryLink %> </div>
+						</div> <!--.img-info -->
+
+						<hr></hr>
+
+						<div class="btn-ctrl-box" id="">
+							<button type="button" class="modal-ctrl" id="modal-close">cancel</button>
+							<button type="button" class="modal-ctrl save-image" >save</button>
+						</div>
+				</div> <!--.specs-->
+			</div> <!-- .modal-panel -->
+		</div> <!-- #modal-wrapper -->
+		<%}%>
+
+		<div id="board-wrapper">
+			<div class="modal-board" id="">
+				
+				<form id="board-form" action="/add-board/<%=user._id %>" method="POST">
+					<div class="form-input">
+						<label class="board-input" for="newBoardName">Create a New Board Name</label>
+						<input type="text" id="name-input" name="newBoardName" autofocus></input>
+					</div>
+					
+					<div class="submit-board">
+						<button type="submit" class="modal-ctrl" id="save-new-board">save</button>
+						<button type="button" class="modal-ctrl" id="cancel-board">cancel</button>
+					</div>
+				</form>
+
+			</div> <!-- .modal-board -->
+		</div> <!-- #board-wrapper -->
+
+		<div class="dash-wrapper">
+			<div class="dash-head">
+				<h3>Board Control</h3>
+				<% if(board === "error") { %>
+					<div id="err" style="display: block">
+						<p id="alert">ALERT!</p>
+						<p id="err-text">Please try again. You must either write in a board name or choose from the list of existing board names</p>
+					</div>
+				<%}%>
+				<div id="new-board">
+					<a id="add-board" href="#" style="color: red; border-style: dotted">Add Board</a>
+				</div>
+			</div>
+
+			<div class="my-boards" id="dash-board" style="">
+				<% boardList.forEach((board, i) => {%>
+					<div class="user-board">
+						<h3 class="board-title"> <a href="/user-board/<%=user._id %>/index=<%=boardIndex[i] %>"> <%=board.board_name %></a></h3>
+				<form class="delete-board-form" action="/delete-board/<%=user._id %>/i=<%=i %>?_method=DELETE" method="POST"> 
+						<button type="submit" class="del-board">Delete</button>
+				</form>
+					</div>
+				<%})%>
+			</div>
+		</div>
+
+	</div>
+
+	</div>
+	<div class="footer-container">
+
+<%include ./partials/footer %>

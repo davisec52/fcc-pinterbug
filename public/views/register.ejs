@@ -1,0 +1,26 @@
+<%include ./partials/header %>
+
+		<!-- <div class="container"> -->
+			<div class="body-container">
+				<div class="credentials-login">
+					<h3>Register</h3>
+					<div class="" id="container-login">
+						<form id="register-form" action="/user-register" method="POST">
+							<label for="username">Username</label>
+							<input type="text" id="full-name" name="username" placeholder="Username" autofocus></input>
+							
+							<label for="email-reg">Email</label>
+							<input class="email-input" id="email-reg" type="email" name="email" placeholder="Current Email"></input>
+
+							<label for="password">Password</label>
+							<input class="password-input" id=password-reg type="password" name="password" placeholder="Current Password"></input>
+							<button type="submit" id="reg-sub">Submit</button>
+						</form>
+					</div>
+				</div>
+				<div id="spacing-login"></div>
+			</div> <!-- .body-container -->
+		<!-- </div> -->
+
+
+<% include ./partials/footer %>

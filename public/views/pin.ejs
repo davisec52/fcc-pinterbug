@@ -1,0 +1,34 @@
+<!-- <div id="pin-container"> -->
+<%include ./partials/header %>
+<div id="pin-container">
+	<div id="pin-wrapper">
+		<div id="pin-modal">
+			<div class="grid-item-pin">
+				<img class="grid-image" src=<%=image_url %> />
+			</div>
+			<form id="pin-form" style="" action="/pin/<%=user._id %>/boardindex=<%=boardindex %>&imageId=<%=imageId %>" method="POST">
+				<div class="select-container">
+					<label class="img-input" style="margin-bottom: 5px" for="select">Choose a Board</label>
+					<select name="selection" id="board-choice">
+						<option class="itemopt" selected value="base">Please Choose</option>
+						<% user.boards.forEach((board) => {%>
+							<option class="itemopt" value="<%=board.board_name %>"><%=board.board_name %></option>
+						<%})%>
+					</select>
+				</div>
+				<hr></hr>
+				<div class="form-input">
+					<label class="img-input" for="boardname">Create a New Board Name</label>
+					<input type="text" id="name-input" name="boardname"></input>
+				</div>
+				<div class="modal-ctrl-box">
+					<button type="submit" class="modal-ctrl">save</button>
+					<a href="/catalog"><button type="button" class="modal-ctrl cancel-pin">cancel</button></a>
+				</div>
+			</form>
+		</div>
+	</div>
+</div>
+<!-- <div class="footer-container"> -->
+
+<%include ./partials/footer %>

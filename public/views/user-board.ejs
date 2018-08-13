@@ -1,0 +1,65 @@
+<%include ./partials/header %>
+
+	<div class="container">
+
+			<div class="addimg-modal">
+				<div id="addimage-panel" >
+					<form id="addimage" action="/user-image/<%=user._id %>/boardindex=<%=index %>" method="POST">
+						<div class=form-input>
+							<label for="imageUrl">Image Url</label>
+							<input type="text" id="" name="imageUrl" placeholder="url here"></input>
+						</div>
+
+						<div class="form-input">
+							<label for="imageTitle">Image Title</label>
+							<input type="text" name="imageTitle" placeholder="title here"></input>
+						</div>
+
+						<div class="form-input">
+							<label for="description">Description</label>
+							<input type="text-area" id="" name="description" placeholder="tell more here"></input>
+						</div>
+						<button id="sub-image" type="submit">Add Image</button>
+					</form>
+						<button id="cancel-btn">cancel</button>
+				</div>
+			</div>
+
+			<div class="user-board-title"><h4> <%=user.username %>'s board: <%=selectedBoard.board_name %> </h4></div>
+			
+			<% if(boardOwnerId === userId) {%>
+				<div class="addimg-box">
+					<button class="add-btn">Add Image</button>
+				</div>
+			<%}%>
+
+
+			<div class="userboard-container">
+				<div class="grid">
+					<div class="grid-sizer"></div>
+					<% selectedBoard.board_items.forEach((item) => {%>
+						<div class="light-container">
+							<div class="light-box">
+							<div class="close-lightbox">&times</div>
+								<img id="light-box-img" src="<%=item.image_url %>" />
+							</div>
+						</div>
+
+						<div class="grid-item">
+							<button class="boardimg" id="pin-board-img" type="button"><a class="pin-clr" href="/pin/<%=user._id %>/boardindex=<%=item.boardindex %>&imageId=<%=item.imageId %>" class="save-pin">save</a></button>
+							<img class="grid-image board-img" src="<%=item.image_url %>" />
+							 <!-- <ul> -->
+							 	<li>Posted By: <%=item.postedBy %></li>
+							 	<li>Title: <%=item.title %></li>
+							 	<% if(item.galleryLink) { %>
+							 	<li>Gallery Link:  <%=item.galleryLink %></li>
+							 <%}%>
+							 <!-- </ul> -->
+						</div>
+					<%});%>
+				</div>
+		</div>
+	</div>
+	<div class="footer-container">
+
+<% include ./partials/footer %>

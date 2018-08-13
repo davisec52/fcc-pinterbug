@@ -1,0 +1,36 @@
+<%include ./partials/header %>
+
+		<!-- <div class="container"> -->
+			<div class="body-container">
+
+				<div class="credentials-login">
+					<!-- <h3>Login with Twitter</h3> -->
+					<div id="container-login">
+						<form id="twitter-login" action="/auth/twitter" method="GET">
+							<button type="submit" class="submit" id="twitter-btn">Login with Twitter</button>
+						</form>
+					</div>
+				</div>
+
+				<div class="credentials-login">
+					<div id="container-login">
+						<h4 id="emaillogin">Login with Email and Password</h4>
+						<form id="login-form" action="/login" method="POST">
+							<label for="username" >Username - Enter the username with which you registered.</label>
+							<input class="user-input" id="user-login" type="text" name="username" placeholder="Current Username" aria-required="true" autofocus></input>
+
+							<label for="password">Password</label>
+							<a id="change" href="/change-password">change password</a>
+							<input class="password-input" id="password-login" type="password" name="password" placeholder="Current Password"></input>
+
+							<button type="submit" class="submit" id="sub-login">Submit</button>
+						</form>
+					</div>
+				</div>
+
+				<!-- <div id="spacing-login"></div> -->
+			</div> <!-- .body-container -->
+		<!-- </div> -->
+		<div class="footer-container">
+
+<%include ./partials/footer %>

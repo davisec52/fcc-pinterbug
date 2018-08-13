@@ -1,0 +1,45 @@
+<%include ./partials/header %>
+
+ 		<div class="container">
+
+			<% if(!user) {%>
+				<p class="userboard-header" style="color: red">Must be logged in to view</p>
+			<%}else {%>
+				<div class="userboard-header"><h3>Member Catalog of Images</h3></div>
+			
+
+			<div class="grid">
+				<div class="grid-sizer"></div>
+				<% allImg.forEach((item, i) => {%>
+
+					<div class="grid-item">
+						<button class="pinimg" id="pin-cat-img" type="button"><a class="pin-clr" href="/pin/<%=user._id %>/boardindex=<%=item.boardindex %>&imageId=<%=item._id %>" class="save-pin">save</a></button>
+						<% if(user) {%>
+							<a href="/user-board/<%=item.user.id %>/index=<%=item.boardindex %>&imageindex=<%=i %>"> <img class="grid-image cat-img" src="<%=item.image_url %>" /></a>
+						<%} else {%>
+							<a href="#"> <img class="grid-image" src="<%=item.image_url %>" /></a>
+						<%}%>
+						 <div class=img-info>
+						 	<li
+						 	class="wordbreak">Posted By: <%=item.postedBy %></li>
+						 	<% if(item.title !== null) {%>
+						 	<li
+						 	class="wordbreak">Title: <%=item.title %></li>
+						 	<%}%>
+						 </div>
+						 	<% if(item.user.id.toString() === user._id.toString()) {%>
+							 	<div>
+							 		<!--item._id is the image id of the image to be deleted -->
+							 		<form action="/delete-img/<%=user._id %>/<%=item._id %>/boardindex=<%=item.boardindex %>?_method=DELETE" method="POST">
+								 		<button class="delimg" id="" type="submit">Delete</button>
+								 	</form>
+							 	</div>
+						 	<%}%>
+					</div>
+				<%});%>
+			</div>
+			<%}%>
+		</div>
+	<div class="footer-container">
+
+<% include ./partials/footer %>

@@ -1,0 +1,30 @@
+<%include ./partials/header %>
+
+		<!-- <div class="container"> -->
+	<div class="container">
+
+		<div class="userboard-header"><h3><%=user.username %>'s Pins</h3></div>
+
+			<div class="grid">
+				<div class="grid-sizer"></div>
+				<% allPins.forEach((item, i) => {%>
+					<div class="grid-item">
+						<a href="/user-board/<%=item.userId %>/index=<%=item.boardindex %>"><img class="grid-image" src="<%=item.image_url %>" /></a>
+						<div>
+							<form action="/delete-pin/<%=user._id%>/<%=item.imageId %>/boardindex=<%=item.boardindex %>&itemindex=<%=i %>?_method=DELETE" method="POST">
+								<button type="submit">Delete</button>
+							</form>
+						</div>
+						<hr></hr>
+						<li>Posted by: <%=item.user %></li>
+						<li>Title: <%=item.title %></li>
+					</div>
+				<%});%>
+			</div>
+		</div>
+	</div>
+
+<div class="footer-container">
+
+
+<%include ./partials/footer %>
