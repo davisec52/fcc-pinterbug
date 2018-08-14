@@ -375,15 +375,20 @@ router.post("/add-board/:id", (req, res) => {
 router.get("/catalog", (req, res) => {
 	console.log("in /catalog");
 	Image.find({}, (err, allImg) => {
-		console.log("all images: ", allImg);
+		/*console.log("all images: ", allImg);
 		console.log("image id: ", typeof allImg[0].user.id);
 		console.log("user id: ", typeof req.user._id);
-		console.log(allImg[0].user.id.toString() === req.user._id.toString());
+		console.log(allImg[0].user.id.toString() === req.user._id.toString());*/
+		if(err) {
+			console.log(err);
+			throw err;
+		}else {
+			res.render("catalog", {
+				user: req.user,
+				allImg: allImg,
+			});
+		}
 
-		res.render("catalog", {
-			user: req.user,
-			allImg: allImg,
-		});
 	});
 });
 

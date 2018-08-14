@@ -20,6 +20,7 @@ let isValidUrl = (req, res, next) => {
 }
 
 let isAuthenticated = (req, res, next) => {
+	console.log("res.locals.currentUser: ", res.locals.currentUser);
 	if(res.locals.currentUser._id.toString() === req.user._id.toString() || req.user._id.toString() === req.params.id) {
 		console.log("Authenticated!");
 		next();
