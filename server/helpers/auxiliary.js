@@ -22,8 +22,8 @@ let isValidUrl = (req, res, next) => {
 let isAuthenticated = (req, res, next) => {
 
 	if(req.session.passport.user.toString() === req.user._id.toString() || req.user._id.toString() === req.params.id) {
-		//console.log("req.session.passport.user: ", req.session.passport.user);
-		//console.log("type of req.session.passport.user: ", typeof req.session.passport.user);
+		console.log("req.session.passport.user: ", req.session.passport.user);
+		console.log("type of req.session.passport.user: ", typeof req.session.passport.user);
 		console.log("Authenticated!");
 		next();
 	}else if(!req.params.id || req.params.id === undefined || !res.locals.currentUser){
