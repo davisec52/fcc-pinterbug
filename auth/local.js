@@ -14,8 +14,5 @@ passport.deserializeUser(function (id, fn) {
 
 
 passport.use(new LocalStrategy(User.authenticate()));
-/*passport.serializeUser(User.serializeUser());
-passport.deserializeUser(User.deserializeUser());
-*/
 
 module.exports = passport;
