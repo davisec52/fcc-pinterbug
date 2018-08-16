@@ -19,7 +19,7 @@ let isValidUrl = (req, res, next) => {
 	}
 }
 
-let isAuthenticated = (req, res, next) => {
+let isLoggedIn = (req, res, next) => {
 
 	/*if(req.session.passport.user === req.user._id.toString() || req.user._id.toString() === req.params.id) {
 		console.log("req.session.passport.user: ", req.session.passport.user);
@@ -56,6 +56,6 @@ let processPin = (person, filterVar, arr, name, bi) => {
 
 module.exports = {
 	isValidUrl,
-	isAuthenticated,
+	isLoggedIn,
 	processPin
 };
