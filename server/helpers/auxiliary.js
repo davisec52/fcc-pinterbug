@@ -36,6 +36,7 @@ let isLoggedIn = (req, res, next) => {
 		next();
 	}else {
 		console.log("Not authenticated");
+		console.log("session in isLoggedIn: ", req.session);
 		res.redirect("/login");
 	}
 }
