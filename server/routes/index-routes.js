@@ -460,7 +460,7 @@ router.post("/pin/:id/:query", isLoggedIn, (req, res) => {
 router.get(["/", "/:term"], (req, res, next) => {
 
 	if(req.session) {
-		console.log("session in index route: ", req.session.passport.user);
+		console.log("session in index route: ", req.session);
 	}else {
 		console.log("no session user");
 	}
