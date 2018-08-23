@@ -8,6 +8,7 @@ let imageSchema = new mongoose.Schema({
 		},
 		username: String
 	},
+	imageId: String,
 	boardindex: Number,
 	itemindex: Number,
 	image_url: String,

@@ -17,9 +17,9 @@ const {isValidUrl, isLoggedIn, processPin} = require("../helpers/auxiliary");
 
 let linkArr = [];
 let imagesArr = [];
+let imgStore = [];
 
 /* Authentication, register, login, and logout routes */
-
 router.get("/login", (req, res, next) => {
 	res.render("login");
 });
@@ -101,7 +101,7 @@ router.post("/change", (req, res) =>{
 router.get('/favicon.ico', (req, res) => {console.log("no favicon"); res.status(204);});
 
 router.post("/img-selection/:id/:query", isLoggedIn, (req, res) => {
-	console.log("req.body: ", req.body);
+	console.log("in img-selection");
 	let q = querystring.parse(req.params.query);
 	let i = q.index;
 	let imageData = linkArr[i];
@@ -145,15 +145,15 @@ router.post("/img-selection/:id/:query", isLoggedIn, (req, res) => {
 		}
 
 		req.user.boards.filter((board, bi)  => {
+			console.log("board: ", board);
 			itemindex = board.board_items.length;
-			console.log("in filter");
 			if(board.board_name.toLowerCase() === boardName.toLowerCase()){
 				newItem.boardindex = bi;
 				board.board_items.push(newItem);
 				req.user.save();
 				newImage.boardindex = bi;
 				newImage.save();
-				res.redirect("/dashboard/" + req.params.id + "/" + "index="+bi);
+				return res.redirect("/dashboard/" + req.params.id + "/" + "index="+bi);
 			}else {
 				console.log("failed to save user");
 			}
@@ -201,14 +201,33 @@ router.get("/dashboard/:id/:query", isLoggedIn, (req, res, next) => {
 	let q = querystring.parse(req.params.query);
 	let save = q.save;
 	let boardindex = parseInt(q.index);
+	let boardidx;
 	let boardList =[];
 	let boardArr = [];
 
-	User.findById(req.user._id).then((user) => {
-		user.boards.forEach((board, bi) => {
-			boardList.push(board);
+	User.findById(req.params.id).then((user) => {
+		user.boards.forEach((b, bi) => {
+			b.boardindex = bi;
+			boardList.push(b);
 			boardArr.push(bi);
+			b.board_items.forEach((item, i) => {
+				console.log("item in dashboard: ", item);
+				item.boardindex = bi;
+
+				Image.find({"user.id": req.params.id}).then((userImages) => {
+					userImages.forEach((userImg) => {
+						if(userImg._id.toString() === item.imageId) {
+							userImg.boardindex = item.boardindex;
+							
+							userImg.save();
+						}
+
+					});
+				}).catch((err) => {console.log(err);});
+			});
 		});
+
+		user.save();
 
 		res.render("dashboard", {
 			save: save,
@@ -231,10 +250,7 @@ router.get("/user-board/:id/:query", isLoggedIn, (req, res) => {
 //In this case, req.params.id is the user._id of the user who created the board	
 	User.findById(req.params.id).then((user) => {
 		let selectedBoard = user.boards[boardIdx];
-		console.log("selectedBoard: ", selectedBoard);
-		console.log("userId: ", user._id);
 		res.render("user-board", {
-			//arrIdx: parseInt(q.arrIdx),
 			index: boardIdx,
 			boardOwnerId: user._id,
 			user: user,
@@ -275,7 +291,6 @@ router.post("/user-image/:id/:query", isLoggedIn, isValidUrl, (req,res) => {
 			image.save();
 			image.user.username = req.user.username;
 			User.findById(req.user._id, (err, user) => {
-			console.log("boardindex in image: ", boardindex);
 				user.boards[boardindex].board_items.push(newImage);
 				user.save();
 				user.boards.filter((board) => {
@@ -284,7 +299,6 @@ router.post("/user-image/:id/:query", isLoggedIn, isValidUrl, (req,res) => {
 					board.board_items[boardItemsLength-1].userId = user._id;
 					image.save();
 				});
-
 			});
 				res.redirect("/user-board/" + req.user._id + "/" + "index="+ boardindex);
 		}
@@ -300,7 +314,6 @@ router.get("/user-pins/:id", isLoggedIn, (req, res) => {
 				pins.push(item);
 			});
 		});
-		console.log("pins in user-pins: ", pins);
 		res.render("user-pins", {
 				user: req.user,
 				allPins: pins,
@@ -324,18 +337,19 @@ router.post("/delete-img/:id/:imageId/:query", isLoggedIn, (req, res) => {
 //Delete route for individual user pin
 router.post("/delete-pin/:id/:imageId/:query", isLoggedIn, (req, res) => {
 	let q = querystring.parse(req.params.query);
+	console.log("q: ", q);
 	let bi = parseInt(q.boardindex);
+	console.log("board index: ", bi);
 	let ii = parseInt(q.itemindex);
 
 	User.findById(req.params.id, (err, user) => {
-		console.log("user board item: ", user.boards[bi].board_items);
 		user.boards[bi].board_items.filter((item, i, ar) => {
 			if(item.imageId === req.params.imageId) {
 				ar.splice(i, 1);
 			}
 		});
-		
 		user.save();
+
 	res.redirect("/catalog");
 	});
 });
@@ -343,19 +357,33 @@ router.post("/delete-pin/:id/:imageId/:query", isLoggedIn, (req, res) => {
 //Delete route for user board
 router.post("/delete-board/:id/:query", isLoggedIn, (req, res) => {
 	let q = querystring.parse(req.params.query);
-	let deletionIndex = q.i;
+	let deletionIndex = parseInt(q.i);
 	let id = req.params.id;
-	console.log("q from del-board: ", q);
-	console.log("id from del-board: ", id);
+
+	Image.find({"user.id": id}).then((userImages) => {
+		userImages.forEach((userImage) => {
+			if(userImage.boardindex === deletionIndex) {
+				userImage.user = undefined;
+				userImage.boardindex = 0;
+				userImage.imageId = userImage._id;
+				imgStore.push(userImage);
+			}
+		});
+	});
+
 	User.findById(id, (err, user) => {
 		if(err) {
 			console.log(err);
 			throw err;
 		}else {
-			console.log("user.boards: ", user.boards);
+			imgStore.forEach((img) => {
+				let itemId = img._id;
+				img.imageId = itemId;
+				user.boards[0].board_items.push(img);
+			});
+
 			user.boards.splice(deletionIndex, 1);
 			user.save();
-			console.log("current user.boards: ", user.boards);
 			res.redirect("back");
 		}
 	});
@@ -374,19 +402,29 @@ router.post("/add-board/:id", (req, res) => {
 
 router.get("/catalog", (req, res) => {
 	console.log("in /catalog");
+
 	Image.find({}, (err, allImg) => {
-		/*console.log("all images: ", allImg);
-		console.log("image id: ", typeof allImg[0].user.id);
-		console.log("user id: ", typeof req.user._id);
-		console.log(allImg[0].user.id.toString() === req.user._id.toString());*/
+
+		allImg.forEach((img) => {
+			console.log("imgStore check: ", imgStore);
+			imgStore.forEach((userImg) => {
+				if(img._id.toString() === userImg._id.toString()) {
+					img.boardindex = 0;
+					img.imageId = userImg._id;
+				}
+				img.save().catch((err) => {console.log(err);});
+			});
+		});
+
 		if(err) {
 			console.log(err);
 			throw err;
 		}else {
+			imgStore.length = 0;
 			res.render("catalog", {
 				user: req.user,
 				allImg: allImg,
-			});
+			}); 
 		}
 
 	});
@@ -432,10 +470,10 @@ router.post("/pin/:id/:query", isLoggedIn, (req, res) => {
 				boardName = req.body.boardname;
 				user.boards.push({board_name: boardName});
 				boardindex = user.boards.length-1;
+				userBoards = user.boards;
 				processPin(user, userBoards, imgPin, boardName, boardindex);
 			}else {
 				boardName = req.body.selection;
-				console.log("user boards: ", user.boards);
 				user.boards.filter((board, i) =>{
 					if(board.board_name === req.body.selection) {
 						if(i > 0) {
@@ -459,15 +497,11 @@ router.post("/pin/:id/:query", isLoggedIn, (req, res) => {
 //controls header and pageload when "/" is called
 router.get(["/", "/:term"], (req, res, next) => {
 
-	if(req.session) {
-		console.log("session in index route: ", req.session);
-	}else {
-		console.log("no session user");
-	}
+	console.log("checking index page");
 
 //using url and query from node's url module to get the value of imageSearch when images generated by search
 	let urlUnit = url.parse(req.url, true);
-	console.log(urlUnit.query.imageSearch);
+	console.log("urlUnit: ", urlUnit.query.imageSearch);
 
 //using query for express to get value of imageSearch
 	let term = req.params.term || req.query.imageSearch;
@@ -503,7 +537,7 @@ router.get(["/", "/:term"], (req, res, next) => {
             
             if(result.length < 1){
                 result.length = 0;
-                res.render("index");
+                res.redirect("back");
                 return;
             }else{
                 for(var i = 0; i < fac; i++){

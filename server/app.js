@@ -32,7 +32,7 @@ app.use(bodyParser.urlencoded({extended: true}));
 app.use(cookieParser());
 app.use(expressSession({
 	secret: process.env.SECRET,
-	cookie: {maxAge: 60000},
+	cookie: {maxAge: 60000 * 60},
 	resave: false,
 	saveUninitialized: false
 }));
