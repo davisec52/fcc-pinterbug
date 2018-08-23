@@ -249,6 +249,10 @@ router.get("/user-board/:id/:query", isLoggedIn, (req, res) => {
 
 //In this case, req.params.id is the user._id of the user who created the board	
 	User.findById(req.params.id).then((user) => {
+		console.log("user.boards: ", user.boards);
+		if(user.boards.length < 1 || user.boards[boardIdx] === undefined) {
+			return res.redirect("/catalog");
+		}
 		let selectedBoard = user.boards[boardIdx];
 		res.render("user-board", {
 			index: boardIdx,
