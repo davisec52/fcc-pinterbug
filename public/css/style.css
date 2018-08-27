@@ -149,13 +149,13 @@ ul {
 	.seed-btn {
 		margin: 2px;
 	}
+
+	.search-ctrl {
+		margin: 5%;
+	}
 }
 
 /* cataglog */
-.catalog, .all-pins {
-	//flex: 1;
-	//margin-left: 15%;
-}
 
 .pinimg, .boardimg {
 	background-color: blue;

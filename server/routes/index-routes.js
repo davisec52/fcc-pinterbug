@@ -452,7 +452,7 @@ router.get("/pin/:id/:query", isLoggedIn, (req, res) => {
 	}).catch((err) => {console.log(err);});
 });
 
-// To be completed: saving new boards, pushing image to either new board or existing board
+// Post route for new pins
 router.post("/pin/:id/:query", isLoggedIn, (req, res) => {
 	let boardName;
 	let userBoards;
