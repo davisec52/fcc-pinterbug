@@ -141,6 +141,7 @@ ul {
    -o-transition: all .5s ease-in-out;
 }
 
+
 @media screen and (max-width: 500px) {
 	.nav-list {
 		display: block;
@@ -153,6 +154,15 @@ ul {
 	.search-ctrl {
 		margin: 5%;
 	}
+
+	/*.credentials-login {
+		width: 90%;
+	}
+
+	.container-login {
+		width: 90%;
+	}*/
+
 }
 
 /* cataglog */
@@ -620,16 +630,21 @@ label {
 	align-items: center;
 	margin-top: 15px;
 	margin: 0 auto;
-	//padding: 25px;
 	border-radius: 10px;
 }
 
-#container-login {
+.container-login {
 	width: 50%;
 	border: 1px solid green;
 	margin-top: 15px;
 	padding: 10px;
 	border-radius: 5px;
+}
+
+@media screen and (max-width: 750px) {
+	.container-login {
+		width: 90%;
+	}
 }
 
 #emaillogin {
@@ -915,7 +930,8 @@ li {
 
 	100%{
 		opacity: 1;
-	}	
+	}
+
 
 /*
 @media only screen and (min-width: 900px) {
