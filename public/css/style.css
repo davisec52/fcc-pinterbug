@@ -87,6 +87,7 @@ ul {
 /* nav-bar controls */
 .nav-bar {
 	position: relative;
+	display: flex;
 	max-width: 100%;
 	background-color: #a9a9a9;
 	border: .1px solid transparent;
@@ -94,6 +95,7 @@ ul {
 }
 
 .nav-list {
+	position: relative;
 	max-width: 100%;
    	display: flex;
    	font-size: 25px;
@@ -139,30 +141,6 @@ ul {
    -webkit-transition: all .5s ease-in-out;
    -moz-transition: all .5s ease-in-out;
    -o-transition: all .5s ease-in-out;
-}
-
-
-@media screen and (max-width: 500px) {
-	.nav-list {
-		display: block;
-	}
-
-	.seed-btn {
-		margin: 2px;
-	}
-
-	.search-ctrl {
-		margin: 5%;
-	}
-
-	/*.credentials-login {
-		width: 90%;
-	}
-
-	.container-login {
-		width: 90%;
-	}*/
-
 }
 
 /* cataglog */
@@ -242,16 +220,18 @@ a:active, a:link, a:hover, a:visited {
 	flex-direction: column;
 	justify-content: center;
 	align-items: center;
+	border-radius: 5px;
 	margin-top: 3%;
 }
 
 .footer {
 	width: 100%;
 	display: flex;
+	flex-direction: column;
 	justify-content: center;
 	align-items: center;
 	background-color: #a1a1a1;
-	border-radius: 3px;
+	border-radius: 5px;
 	height: 60px;
 }
 
@@ -646,6 +626,39 @@ label {
 		width: 90%;
 	}
 }
+
+@media screen and (max-width: 630px) {
+	.nav-list > .nav-item {
+	   	text-align: left;
+	   	font-size: 20px;
+	   	margin-left: 5px;
+	}
+}
+
+@media screen and (max-width: 500px) {
+	.nav-list {
+		display: block;
+	}
+
+	.seed-btn {
+		margin: 2px;
+	}
+
+	.search-ctrl {
+		margin: 5%;
+	}
+
+	.footer {
+		text-align: center;
+		height: 85px;
+	}
+}
+
+/*@media screen and(max-width: 351px) {
+	.footer {
+		height: 85px;
+	}
+}*/
 
 #emaillogin {
 	display: flex;
