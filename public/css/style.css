@@ -602,9 +602,18 @@ label {
 	border-radius: 5px;
 }
 
-@media screen and (max-width: 750px) {
+@media screen and (min-device-width: 768px) and (max-device-width: 1024px) {
+	.container {
+		margin-bottom: -45px;
+	}
+}
+
+@media screen and (max-width: 767px) {
 	.container-login {
 		width: 90%;
+	}
+	.container {
+		margin-bottom: -40px;
 	}
 }
 
@@ -613,6 +622,10 @@ label {
 	   	text-align: left;
 	   	font-size: 20px;
 	   	margin-left: 5px;
+	}
+
+	.container {
+		margin-bottom: -25px;
 	}
 }
 
@@ -632,6 +645,10 @@ label {
 	.footer {
 		text-align: center;
 		height: 85px;
+	}
+
+	.container {
+		margin-bottom: -15px;
 	}
 }
 
