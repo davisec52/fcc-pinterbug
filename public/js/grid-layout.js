@@ -126,13 +126,17 @@ $(document).ready(function() {
 					document.getElementsByClassName("container")[0].style.backgroundColor = "#444";
 					document.getElementsByClassName("user-board-title")[0].style.visibility = "hidden";
 					document.getElementsByClassName("addimg-box")[0].style.visibility = "hidden";
+					document.getElementsByClassName("nav-bar")[0].style.display = "none";
 					if(gridItem) {
 						gridItem.forEach((gi) => {
 							gi.style.visibility = "hidden";
 						});
 					}
 					//document.getElementsByClassName("grid-item")[0].style.visibility = "hidden";
+					if(document.getElementById("pin-board-img")) {
+
 					document.getElementById("pin-board-img").style.visibility = "hidden";
+					}
 					addModal.style.opacity = 1;
 					let cancelBtn = document.getElementById("cancel-btn");
 					console.log(cancelBtn);
@@ -142,6 +146,7 @@ $(document).ready(function() {
 						document.getElementsByClassName("container")[0].style.backgroundColor = "";
 						document.getElementsByClassName("user-board-title")[0].style.visibility = "visible";
 						document.getElementsByClassName("addimg-box")[0].style.visibility = "visible";
+						document.getElementsByClassName("nav-bar")[0].style.display = "flex";
 						if(gridItem) {
 							gridItem.forEach((gi) => {
 								gi.style.visibility = "visible";
@@ -169,7 +174,8 @@ $(document).ready(function() {
 			boardWrap.style.display = "flex";
 			boardWrap.style.opacity = 1;
 			modalBoard.style.opacity = 1;
-			dashWrapper.style.backgroundColor = "#444";
+			document.getElementsByClassName("container")[0].style.backgroundColor ="#444";
+			document.getElementById("btn-container").style.display = "none";
 			dashWrapper.style.opacity = 1;
 			if(document.getElementsByClassName("boardWrap")) {
 				let cancelBoard = document.getElementById("cancel-board");
@@ -178,7 +184,8 @@ $(document).ready(function() {
 					boardWrap.style.opacity = "0";
 					setTimeout(function(){
 						boardWrap.style.display = "none";
-						dashWrapper.style.backgroundColor = "";
+						document.getElementsByClassName("container")[0].style.backgroundColor ="";
+						document.getElementById("btn-container").style.display = "";
 						dashWrapper.style.opacity = 1;
 						document.getElementsByClassName("dash-head")[0].style.visibility = "visible";
 						document.getElementsByClassName("my-boards")[0].style.visibility = "visible";

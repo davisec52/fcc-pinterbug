@@ -12,7 +12,7 @@
 		<div id="modal-wrapper">
 			<div class="modal-panel" id="modal-content" style="">
 				<div class="img-selection">
-					<img class="" id="selection" src=<%=images.url %> />
+					<img class="" id="img-pin" src=<%=images.url %> />
 				</div>
 				<div class="specs">
 						<form id="img-form" style="display: none" action="/img-selection/<%=user._id %>/postedby=<%=images.postedBy %>&index=<%=index %>&save=true" method="POST">
@@ -54,9 +54,11 @@
 
 						<hr></hr>
 
-						<div class="btn-ctrl-box" id="">
+						<div id="btn-box">
+						<div class="btn-ctrl-box">
 							<button type="button" class="modal-ctrl" id="modal-close">cancel</button>
 							<button type="button" class="modal-ctrl save-image" >save</button>
+						</div>
 						</div>
 				</div> <!--.specs-->
 			</div> <!-- .modal-panel -->

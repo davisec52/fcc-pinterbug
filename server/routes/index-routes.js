@@ -143,7 +143,6 @@ router.post("/img-selection/:id/:query", isLoggedIn, (req, res) => {
 		}
 
 		req.user.boards.filter((board, bi)  => {
-			console.log("board: ", board);
 			itemindex = board.board_items.length;
 			if(board.board_name.toLowerCase() === boardName.toLowerCase()){
 				newItem.boardindex = bi;
@@ -209,7 +208,6 @@ router.get("/dashboard/:id/:query", isLoggedIn, (req, res, next) => {
 			boardList.push(b);
 			boardArr.push(bi);
 			b.board_items.forEach((item, i) => {
-				console.log("item in dashboard: ", item);
 				item.boardindex = bi;
 
 				Image.find({"user.id": req.params.id}).then((userImages) => {
@@ -247,7 +245,6 @@ router.get("/user-board/:id/:query", isLoggedIn, (req, res) => {
 
 //In this case, req.params.id is the user._id of the user who created the board	
 	User.findById(req.params.id).then((user) => {
-		console.log("user.boards: ", user.boards);
 		if(user.boards.length < 1 || user.boards[boardIdx] === undefined) {
 			return res.redirect("/catalog");
 		}
