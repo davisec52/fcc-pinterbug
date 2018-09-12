@@ -494,7 +494,7 @@ label {
 
 .addimg-modal {
 	display: none;
-	position: relative;
+	position: fixed;
 	justify-content: center;
 	z-index: 1;
 	top: 12%;
@@ -867,6 +867,14 @@ li {
 
 	.container {
 		margin-bottom: -40px;
+	}
+
+	.addimg-modal {
+		position: relative;
+	}
+
+	.modal-board {
+		position: relative;
 	}
 
 	.modal-panel {
