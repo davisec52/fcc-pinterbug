@@ -303,7 +303,7 @@ a:active, a:link, a:hover, a:visited {
 	width: 30%;
 	display: flex;
 	flex-direction: column;
-	margin: 0 5% 1% 5%;
+	margin: 0 5% 1% 10%;
 }
 
 .btn-ctrl-box {
@@ -313,13 +313,10 @@ a:active, a:link, a:hover, a:visited {
 	margin: 0 5% 1% 5%;
 }
 
-/*.modal-ctrl {
-	position: relative;
-	flex: 1;
-	margin: 5px;
-	font-size: .9em;
-	border-radius: 3px;
-}*/
+.modal-ctrl, .save-image, .save-board {
+	margin: 3px;
+	border-radius: 5px;
+}
 
 .img-selection {
 	display: flex;
@@ -497,7 +494,7 @@ label {
 
 .addimg-modal {
 	display: none;
-	position: fixed;
+	position: relative;
 	justify-content: center;
 	z-index: 1;
 	top: 12%;
@@ -857,6 +854,10 @@ li {
 		left: 5%;
 	}
 
+	.modal-ctrl-box {
+		margin-left: 20%;
+	}
+
 }
 
 @media screen and (max-width: 767px) {
@@ -875,6 +876,7 @@ li {
 
 	.modal-ctrl-box {
 		width: 30%;
+		margin-left: 20%;
 	}
 
 	.btn-ctrl-box {
@@ -887,7 +889,7 @@ li {
 
 
 	#img-form {
-		margin-top: 5px;
+		margin-top: 5px auto;
 		font-size: 2.5vw;
 	}
 
@@ -987,7 +989,7 @@ li {
 
 	.specs {
 		margin-left: 5%;
-		margin-right: 25%;
+		margin-right: 35%;
 	}
 
 	.user-board {
