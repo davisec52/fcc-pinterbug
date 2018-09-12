@@ -858,6 +858,10 @@ li {
 		margin-left: 20%;
 	}
 
+	.close-lightbox {
+		right: 20%;
+	}
+
 }
 
 @media screen and (max-width: 767px) {
@@ -914,6 +918,10 @@ li {
 	#board-wrapper {
 		width: 70%;
 		left: 3%;
+	}
+
+	.close-lightbox {
+		right: 20%;
 	}
 }
 
