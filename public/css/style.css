@@ -718,7 +718,7 @@ input {
 
 /* .modal-board */
 .modal-board {
-	position: fixed;
+	position: relative;
 	display: flex;
 	flex-direction: column;
 	justify-content: center;
@@ -869,17 +869,17 @@ li {
 		margin-bottom: -40px;
 	}
 
+	.modal-panel {
+		flex-direction: column;
+		justify-content: center;
+	}
+
 	.addimg-modal {
 		position: relative;
 	}
 
 	#board-wrapper {
 		position: relative;
-	}
-
-	.modal-panel {
-		flex-direction: column;
-		justify-content: center;
 	}
 
 	.modal-ctrl-box {
