@@ -718,7 +718,7 @@ input {
 
 /* .modal-board */
 .modal-board {
-	position: relative;
+	position: fixed;
 	display: flex;
 	flex-direction: column;
 	justify-content: center;
@@ -873,7 +873,7 @@ li {
 		position: relative;
 	}
 
-	.modal-board {
+	#board-wrapper {
 		position: relative;
 	}
 
