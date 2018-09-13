@@ -548,7 +548,8 @@ label {
 /* pin images */
 
 #pin-wrapper {
-	position: fixed;
+	width: 100%;
+	position: relative;
 	background-color: #333;
 	display: flex;
 	justify-content: center;
@@ -561,7 +562,7 @@ label {
 }
 
 #pin-modal {
-	//position: absolute;
+	/*position: absolute;*/
 	position: relative;
 	background: green;
 	display: flex;
@@ -826,6 +827,14 @@ li {
 	margin-top: 1%;
 }
 
+.pin-ctrl-box {
+	position: relative;
+	width: 30%;
+	display: flex;
+	flex-direction: column;
+	margin: 0 5% 1% 10%;
+}
+
 @media screen and (min-device-width: 768px) and (max-device-width: 1024px) {
 	.container {
 		margin-bottom: -45px;
@@ -843,7 +852,6 @@ li {
 		font-size: 2.2vw;
 	}
 
-
 	#sub-image, #cancel-btn {
 		font-size: 2vw;
 		width: 33%;
@@ -860,6 +868,10 @@ li {
 
 	.close-lightbox {
 		right: 20%;
+	}
+
+	.pin-ctrl-box {
+		width: 35%;
 	}
 
 }
@@ -923,6 +935,10 @@ li {
 	.close-lightbox {
 		right: 20%;
 	}
+
+	.pin-ctrl-box {
+		width: 45%;
+	}
 }
 
 @media screen and (max-width: 630px) {
@@ -961,6 +977,10 @@ li {
 	#board-wrapper {
 		width: 80%;
 		left: 1%;
+	}
+
+	.pin-ctrl-box {
+		width: 50%;
 	}
 }
 
