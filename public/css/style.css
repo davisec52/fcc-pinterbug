@@ -1050,7 +1050,7 @@ li {
 
 	.specs {
 		margin-left: 5%;
-		margin-right: 10%;
+		margin-right: 8%;
 	}
 
 	.item-info {
@@ -1078,12 +1078,12 @@ li {
 
 	#img-form {
 		margin-top: 5px;
-		margin-right: 15%;
+		margin-right: 5%;
 	}
 
 	.specs {
-		//margin-left: 5%;
-		margin-right: 15%;
+		margin-left: 5%;
+		margin-right: 8%;
 	}
 }
 
