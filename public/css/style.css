@@ -2,10 +2,6 @@
 
 * { box-sizing: border-box; }
 
-div {
-	//border: .25px solid black;
-}
-
 html {
 	height: 100%;
 }
@@ -184,7 +180,6 @@ ul {
 	display: flex;
 	flex-direction: column;
 	margin-bottom: 10px;
-	//margin-right: 15%;
 }
 
 .welcome {
@@ -272,7 +267,7 @@ a:active, a:link, a:hover, a:visited {
 .modal-panel {
 	//position: absolute;
 	position: relative;
-	background: green;
+	background: #fefefe;
 	display: flex;
 	justify-content: space-around;
 	align-items: center;
@@ -370,7 +365,6 @@ a:active, a:link, a:hover, a:visited {
 .item-info {
 	flex: 1;
 	margin: 10px 0 5px 0;
-	//font-size: 1.8vw;
 	font-family: Arial, sans-serif;
 	font-weight: 500;
 }
@@ -428,7 +422,6 @@ label {
 	transition: all .5s;
 	animation-name: myBoardAppear;
 	animation-duration: .5s;
-	//border: 1px solid green;
 	margin: 0 auto 3% auto;
 }
 
@@ -451,7 +444,6 @@ label {
 	display: flex;
 	justify-content: center;
 	width: 70%
-	background-color: "green";
 }
 
 
@@ -529,8 +521,6 @@ label {
 
 /* image submit button */
 #sub-image {
-	/*margin-left: 40%;
-	margin-right: 40%;*/
 	width: 20%;
 	margin-left: auto;
 	margin-right: auto;
@@ -564,7 +554,7 @@ label {
 #pin-modal {
 	/*position: absolute;*/
 	position: relative;
-	background: green;
+	background: #fefefe;
 	display: flex;
 	justify-content: center;
 	align-items: center;
@@ -1025,7 +1015,7 @@ li {
 
 	.specs {
 		margin-left: 5%;
-		margin-right: 35%;
+		margin-right: 8%;
 	}
 
 	.user-board {
@@ -1044,14 +1034,23 @@ li {
 @media screen and (max-width: 420px) {
 	.modal-ctrl-box {
 		width: 45%;
+		margin-left: 35%;
 	}
 
 	.btn-ctrl-box {
 		width: 100%;
 	}
 
+
+
 	#img-form {
 		margin-top: 5px;
+		margin-right: 10%;
+	}
+
+	.specs {
+		margin-left: 5%;
+		margin-right: 10%;
 	}
 
 	.item-info {
@@ -1075,6 +1074,16 @@ li {
 @media screen and(max-width: 360px) {
 	.item-info {
 		font-size: 5vw;
+	}
+
+	#img-form {
+		margin-top: 5px;
+		margin-right: 15%;
+	}
+
+	.specs {
+		//margin-left: 5%;
+		margin-right: 15%;
 	}
 }
 
