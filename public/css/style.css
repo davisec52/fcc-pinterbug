@@ -1041,8 +1041,6 @@ li {
 		width: 100%;
 	}
 
-
-
 	#img-form {
 		margin-top: 5px;
 		margin-right: 10%;
@@ -1084,6 +1082,11 @@ li {
 	.specs {
 		margin-left: 5%;
 		margin-right: 8%;
+	}
+
+	select[name="selection"] {
+		width: 50%;
+		flex: 1;
 	}
 }
 
