@@ -336,6 +336,7 @@ a:active, a:link, a:hover, a:visited {
 #img-form {
 	flex: 1;
 	flex-direction: column;
+	justify-content: right;
 }
 
 .form-input {
@@ -837,8 +838,18 @@ li {
 		justify-content: center;
 	}
 
+	.specs {
+		width: 100%;
+		justify-content: center;
+		align-items: center;
+	}
+
+	.img-info {
+		margin: 0 auto ;
+	}
+
 	#img-form {
-		margin-top: 5px;
+		margin-top: 10px;
 		font-size: 2.2vw;
 	}
 
@@ -853,7 +864,12 @@ li {
 	}
 
 	.modal-ctrl-box {
+		width: 30%;
 		margin-left: 20%;
+	}
+
+	.btn-ctrl-box {
+		margin: 0 auto;
 	}
 
 	.close-lightbox {
@@ -880,6 +896,12 @@ li {
 		justify-content: center;
 	}
 
+	.specs {
+		width: 100%;
+		justify-content: center;
+		align-items: center;
+	}
+
 	.addimg-modal {
 		position: relative;
 	}
@@ -894,7 +916,8 @@ li {
 	}
 
 	.btn-ctrl-box {
-		width: 50%;
+		margin: 0 auto;
+		width: 30%;
 	}
 
 	.item-info {
@@ -947,7 +970,8 @@ li {
 	}
 
 	.btn-ctrl-box {
-		width: 60%;
+		margin: 0 auto;
+		width: 30%;
 	}
 
 	.item-info {
@@ -1001,7 +1025,8 @@ li {
 	}
 
 	.btn-ctrl-box {
-		width: 70%;
+		margin: 0 auto;
+		width: 30%;
 	}
 
 	.item-info {
@@ -1038,7 +1063,8 @@ li {
 	}
 
 	.btn-ctrl-box {
-		width: 100%;
+		margin: 0 auto;
+		width: 40%;
 	}
 
 	#img-form {
@@ -1084,9 +1110,9 @@ li {
 		margin-right: 8%;
 	}
 
-	select[name="selection"] {
-		width: 50%;
-		flex: 1;
+	.btn-ctrl-box {
+		margin: 0 auto;
+		width: 40%;
 	}
 }
 
