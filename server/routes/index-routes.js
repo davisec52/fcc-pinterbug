@@ -265,7 +265,9 @@ router.get("/lightbox/:id/:query", (req, res) => {
 	res.redirect("/user-board/" + req.params.id + "/" + "index=0" );
 });
 
+//This route controls images added via the add-image board
 router.post("/user-image/:id/:query", isLoggedIn, isValidUrl, (req,res) => {
+	console.log("req.user: ", req.user._id);
 	let timestamp = new Date;
 	console.log("test placeholder url: ", req.body.imageUrl)
 	let q = querystring.parse(req.params.query);
@@ -311,6 +313,7 @@ router.get("/user-pins/:id", isLoggedIn, (req, res) => {
 		user.boards.forEach((board) => {
 			board.board_items.forEach((item, i) =>{
 				pins.push(item);
+				console.log("pins: ", pins);
 			});
 		});
 		res.render("user-pins", {

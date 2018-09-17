@@ -11,9 +11,15 @@
 					<div class="grid-item">
 						<a href="/user-board/<%=item.userId %>/index=<%=item.boardindex %>"><img class="grid-image" src="<%=item.image_url %>" /></a>
 						<div>
-							<form action="/delete-pin/<%=user._id%>/<%=item.imageId %>/boardindex=<%=item.boardindex %>&itemindex=<%=i %>?_method=DELETE" method="POST">
-								<button type="submit">Delete</button>
-							</form>
+							<% if(item.imageId) {%>
+								<form action="/delete-pin/<%=user._id%>/<%=item.imageId %>/boardindex=<%=item.boardindex %>&itemindex=<%=i %>?_method=DELETE" method="POST">
+									<button type="submit">Delete</button>
+								</form>
+							<%} else {%>
+								<form action="/delete-pin/<%=user._id%>/<%=item._id %>/boardindex=<%=item.boardindex %>&itemindex=<%=i %>?_method=DELETE" method="POST">
+									<button type="submit">Delete</button>
+								</form>
+							<%}%>
 						</div>
 						<hr></hr>
 						<li>Posted by: <%=item.user %></li>

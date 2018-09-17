@@ -46,7 +46,12 @@
 						</div>
 
 						<div class="grid-item">
-							<button class="boardimg" id="pin-board-img" type="button"><a class="pin-clr" href="/pin/<%=user._id %>/boardindex=<%=item.boardindex %>&imageId=<%=item.imageId %>" class="save-pin">save</a></button>
+							<% if(item.imageId) {%>
+								<button class="boardimg" id="pin-board-img" type="button"><a class="pin-clr" href="/pin/<%=user._id %>/boardindex=<%=item.boardindex %>&imageId=<%=item.imageId %>" class="save-pin">save</a></button>
+								<%} else {%>
+									<button class="boardimg" id="pin-board-img" type="button"><a class="pin-clr" href="/pin/<%=user._id %>/boardindex=<%=item.boardindex %>&imageId=<%=item._id %>" class="save-pin">save</a></button>
+								<%}%>
+							
 							<img class="grid-image board-img" src="<%=item.image_url %>" />
 							 <!-- <ul> -->
 							 	<li>Posted By: <%=item.postedBy %></li>
